@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taste_craft/ui/pages/on_boarding2.dart';
 import 'package:taste_craft/ui/pages/splash_page.dart';
 
 void main() => runApp(const MyApp());
@@ -8,9 +9,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const SplashPage(),
+        '/on-boarding2': (context) => const OnBoarding2(),
+      },
     );
   }
 }

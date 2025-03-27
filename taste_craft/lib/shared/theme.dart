@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,6 +11,9 @@ Color bgPinkColor = const Color(0xFFFFC6C9);
 Color headerColor = const Color(0xff663D2F);
 Color textBrownColor = const Color(0xff32201C);
 Color bgButtonColor = const Color(0xffCA7100);
+Color greyColor = const Color(0xffA4A8AE);
+
+
 
 TextStyle brownTextStyle = GoogleFonts.poppins(
   color: textBrownColor,
