@@ -7,6 +7,7 @@ class OnBoarding2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bgWhiteColor,
       appBar: AppBar(
         leading: IconButton(
           icon: Padding(

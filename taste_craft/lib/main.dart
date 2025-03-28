@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taste_craft/ui/pages/login_page.dart';
 import 'package:taste_craft/ui/pages/on_boarding2.dart';
 import 'package:taste_craft/ui/pages/splash_page.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const SplashPage(),
         '/on-boarding2': (context) => const OnBoarding2(),
+        '/login': (context) => const LoginPage(),
       },
     );
   }

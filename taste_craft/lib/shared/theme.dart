@@ -12,8 +12,7 @@ Color headerColor = const Color(0xff663D2F);
 Color textBrownColor = const Color(0xff32201C);
 Color bgButtonColor = const Color(0xffCA7100);
 Color greyColor = const Color(0xffA4A8AE);
-
-
+Color bgWhiteColor = const Color(0xffFFFDF9);
 
 TextStyle brownTextStyle = GoogleFonts.poppins(
   color: textBrownColor,
@@ -41,4 +40,11 @@ TextStyle buttonTextStyle = GoogleFonts.poppins(
 
 TextStyle inputTextStyle = GoogleFonts.poppins(
   color: bgInputColor,
+);
+
+TextStyle hintTextStyle = GoogleFonts.poppins(
+  color: textColor,
+);
+TextStyle darkBrownTextStyle2 = GoogleFonts.leagueSpartan(
+  color: darkBrownColor,
 );
