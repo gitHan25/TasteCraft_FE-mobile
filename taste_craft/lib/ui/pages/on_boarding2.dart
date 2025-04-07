@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taste_craft/shared/theme.dart';
+import 'package:taste_craft/ui/widgets/button.dart';
 
 class OnBoarding2 extends StatelessWidget {
   const OnBoarding2({super.key});
@@ -147,45 +148,20 @@ class OnBoarding2 extends StatelessWidget {
                 Center(
                   child: Row(
                     children: [
-                      ElevatedButton(
+                      CustomFilledButton(
+                        title: 'Login',
+                        width: 160,
                         onPressed: () {
                           Navigator.pushNamed(context, '/login');
                         },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: bgInputColor,
-                          minimumSize: const Size(160, 50),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                        ),
-                        child: Text(
-                          'Login',
-                          style: buttonTextStyle.copyWith(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
                       ),
                       const Spacer(),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/register');
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: bgInputColor,
-                          minimumSize: const Size(160, 50),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                        ),
-                        child: Text(
-                          'Register',
-                          style: buttonTextStyle.copyWith(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
+                      CustomFilledButton(
+                          title: 'Register',
+                          width: 160,
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/register');
+                          }),
                     ],
                   ),
                 ),

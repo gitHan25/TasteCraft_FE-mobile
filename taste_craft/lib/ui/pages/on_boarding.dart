@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:taste_craft/shared/theme.dart';
+import 'package:taste_craft/ui/widgets/button.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});
@@ -108,24 +109,14 @@ class _OnBoardingState extends State<OnBoarding> {
                     ],
                   ),
                   SizedBox(height: 25),
-                  ElevatedButton(
+                  CustomFilledButton(
+                    title: 'Continue',
                     onPressed: () {
                       carouselController.nextPage();
                       if (currentIndex == 1) {
                         Navigator.pushNamed(context, '/on-boarding2');
                       }
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: bgInputColor,
-                      minimumSize: Size(double.infinity, 50),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
-                    child: Text(
-                      'Continue',
-                      style: buttonTextStyle,
-                    ),
                   ),
                 ],
               ),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:taste_craft/shared/theme.dart';
+import 'package:taste_craft/ui/widgets/buttons.dart';
+import 'package:taste_craft/ui/widgets/form.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -23,11 +24,13 @@ class LoginPage extends StatelessWidget {
               image: DecorationImage(image: AssetImage('assets/Logo1.png')),
             ),
           ),
-          Text('Login',
-              style: headerTextStyle.copyWith(
-                fontSize: 30,
-                fontWeight: FontWeight.w600,
-              )),
+          Text(
+            'Login',
+            style: headerTextStyle.copyWith(
+              fontSize: 30,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
           const SizedBox(
             height: 5,
           ),
@@ -40,97 +43,39 @@ class LoginPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Email',
-                      style: darkBrownTextStyle.copyWith(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
+                CustomFormField(
+                  title: 'Email',
+                  hintText: 'example@example.com',
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                CustomFormField(
+                  title: 'Password',
+                  hintText: '********',
+                  obscureText: true,
+                ),
+                const SizedBox(
+                  height: 13,
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    'Forgot Password?',
+                    style: darkBrownTextStyle2.copyWith(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        fillColor: bgInputColor,
-                        filled: true,
-                        hintText: 'example@example.com',
-                        hintStyle: hintTextStyle.copyWith(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: textColor.withOpacity(0.45),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'Password',
-                      style: darkBrownTextStyle.copyWith(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        fillColor: bgInputColor,
-                        filled: true,
-                        hintText: '********',
-                        hintStyle: hintTextStyle.copyWith(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: textColor.withOpacity(0.45),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 13,
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        'Forgot Password?',
-                        style: darkBrownTextStyle2.copyWith(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: bgButtonColor,
-                        minimumSize: Size(double.infinity, 50),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
-                      child: Text(
-                        'Login',
-                        style: whiteTextStyle.copyWith(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Center(
+                  child: CustomButton(
+                    title: 'Login',
+                    onPressed: () {},
+                  ),
                 ),
                 const SizedBox(height: 30),
                 Row(
@@ -152,7 +97,7 @@ class LoginPage extends StatelessWidget {
                           fontWeight: FontWeight.w200,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ],
