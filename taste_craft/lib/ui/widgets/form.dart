@@ -5,6 +5,7 @@ class CustomFormField extends StatelessWidget {
   final String title;
   final String? hintText;
   final bool obscureText;
+  final Widget? icon;
   final TextEditingController? controller;
 
   const CustomFormField({
@@ -12,6 +13,7 @@ class CustomFormField extends StatelessWidget {
     required this.title,
     this.hintText,
     this.obscureText = false,
+    this.icon,
     this.controller,
   });
 
@@ -42,6 +44,8 @@ class CustomFormField extends StatelessWidget {
               fontWeight: FontWeight.w400,
               color: textColor.withOpacity(0.45),
             ),
+            suffixIcon: icon,
+            iconColor: textColor,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(18),
             ),

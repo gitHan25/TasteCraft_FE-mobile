@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taste_craft/ui/pages/home_page.dart';
 import 'package:taste_craft/ui/pages/login_page.dart';
 import 'package:taste_craft/ui/pages/on_boarding2.dart';
 import 'package:taste_craft/ui/pages/register_page.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
         '/on-boarding2': (context) => const OnBoarding2(),
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
+        '/home': (context) => const HomePage(),
       },
     );
   }

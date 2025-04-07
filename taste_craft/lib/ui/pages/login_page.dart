@@ -74,7 +74,10 @@ class LoginPage extends StatelessWidget {
                 Center(
                   child: CustomButton(
                     title: 'Login',
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, '/home', (route) => false);
+                    },
                   ),
                 ),
                 const SizedBox(height: 30),

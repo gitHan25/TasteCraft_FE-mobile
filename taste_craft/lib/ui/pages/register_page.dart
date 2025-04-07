@@ -4,8 +4,16 @@ import 'package:taste_craft/ui/widgets/button.dart';
 import 'package:taste_craft/ui/widgets/buttons.dart';
 import 'package:taste_craft/ui/widgets/form.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
+
+  @override
+  _RegisterPageState createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  bool _isPasswordVisible = false;
+  bool _isConfirmPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -36,46 +44,76 @@ class RegisterPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomFormField(
+                const CustomFormField(
                   title: 'Full Name',
                   hintText: 'John Doe',
+                  icon: Icon(Icons.person),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                CustomFormField(
+                const CustomFormField(
                   title: 'Email',
                   hintText: 'example@gmail.com',
+                  icon: Icon(Icons.email),
                 ),
                 const SizedBox(
                   height: 13,
                 ),
-                CustomFormField(
+                const CustomFormField(
                   title: 'Mobile Number',
                   hintText: '+6288888888',
+                  icon: Icon(Icons.phone),
                 ),
                 const SizedBox(
                   height: 13,
                 ),
-                CustomFormField(
+                const CustomFormField(
                   title: 'Date Of Birth',
                   hintText: 'DD/MM/YYYY',
+                  icon: Icon(Icons.calendar_today),
                 ),
                 const SizedBox(
                   height: 13,
                 ),
+              
                 CustomFormField(
                   title: 'Password',
                   hintText: '********',
-                  obscureText: true,
+                  obscureText: !_isPasswordVisible,
+                  icon: IconButton(
+                    icon: Icon(
+                      _isPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _isPasswordVisible = !_isPasswordVisible;
+                      });
+                    },
+                  ),
                 ),
                 const SizedBox(
                   height: 13,
                 ),
+
                 CustomFormField(
                   title: 'Confirm Password',
                   hintText: '********',
-                  obscureText: true,
+                  obscureText: !_isConfirmPasswordVisible,
+                  icon: IconButton(
+                    icon: Icon(
+                      _isConfirmPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+                      });
+                    },
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
@@ -124,14 +162,13 @@ class RegisterPage extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        backgroundColor: Colors.white,
+                        backgroundColor: bgWhiteColor,
                         title: Column(
                           children: [
                             CircleAvatar(
-                              backgroundColor:
-                                  Color(0xFFFE9B3D), // Orange color
+                              backgroundColor: bgInputColor,
                               radius: 30,
-                              child: Icon(
+                              child: const Icon(
                                 Icons.check,
                                 color: Colors.white,
                                 size: 40,
@@ -141,30 +178,32 @@ class RegisterPage extends StatelessWidget {
                             Text(
                               'Sign Up Successful!',
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: hintTextStyle.copyWith(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
                           ],
                         ),
-                        content: const Text(
+                        content: Text(
                           'Successfully registered.\nYou can now Log In and start exploring delicious recipes!',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 14,
+                          style: hintTextStyle.copyWith(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                         actions: [
                           CustomFilledButton(
-                              title: 'Continue',
-                              onPressed: () {
-                                Navigator.pushNamedAndRemoveUntil(
-                                  context,
-                                  '/login',
-                                  (route) => false,
-                                );
-                              }),
+                            title: 'Continue',
+                            onPressed: () {
+                              Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                '/login',
+                                (route) => false,
+                              );
+                            },
+                          ),
                         ],
                       ),
                     ),
