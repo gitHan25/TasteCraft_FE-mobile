@@ -89,7 +89,9 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/register');
+                      },
                       child: Text(
                         ' Register',
                         style: buttonTextStyle.copyWith(
