@@ -13,6 +13,11 @@ Color textBrownColor = const Color(0xff32201C);
 Color bgButtonColor = const Color(0xffCA7100);
 Color greyColor = const Color(0xffA4A8AE);
 Color bgWhiteColor = const Color(0xffFFFDF9);
+Color orangeColor = const Color(0xffE0A458);
+Color greenColor = const Color(0xFF8B5E3B);
+TextStyle orangeTextStyle = GoogleFonts.poppins(
+  color: orangeColor,
+);
 
 TextStyle brownTextStyle = GoogleFonts.poppins(
   color: textBrownColor,

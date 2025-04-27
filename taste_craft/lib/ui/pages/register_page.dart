@@ -76,7 +76,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(
                   height: 13,
                 ),
-              
                 CustomFormField(
                   title: 'Password',
                   hintText: '********',
@@ -97,7 +96,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(
                   height: 13,
                 ),
-
                 CustomFormField(
                   title: 'Confirm Password',
                   hintText: '********',
