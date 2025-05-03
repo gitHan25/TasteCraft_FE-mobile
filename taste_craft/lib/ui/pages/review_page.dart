@@ -11,7 +11,6 @@ class ReviewPage extends StatefulWidget {
 class _ReviewPageState extends State<ReviewPage> {
   final TextEditingController _commentController = TextEditingController();
 
-  // Sample comments and reviews
   List<Map<String, String>> comments = [
     {
       "username": "@_joshua",
@@ -40,10 +39,11 @@ class _ReviewPageState extends State<ReviewPage> {
         backgroundColor: Colors.white, // White background color
         elevation: 0, // Remove shadow for flat design
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back,
-              color: Color(0xFFCA7100)), // Set color to '#CA7100'
+          icon: Image.asset(
+            'assets/back-arrow.png',
+          ),
           onPressed: () {
-            // Add functionality for back button
+            Navigator.pushNamed(context, '/home');
           },
         ),
         title: Row(
@@ -80,7 +80,6 @@ class _ReviewPageState extends State<ReviewPage> {
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // Product Review Section (Card with Add Review button)
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
@@ -157,19 +156,6 @@ class _ReviewPageState extends State<ReviewPage> {
                     ],
                   ),
                   const SizedBox(height: 16),
-
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/leave-review');
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
-                    child: const Text('Add Review'),
-                  ),
                 ],
               ),
             ),
@@ -207,7 +193,7 @@ class _ReviewPageState extends State<ReviewPage> {
               child: TextField(
                 controller: _commentController,
                 decoration: InputDecoration(
-                  hintText: 'Add a comment...',
+                  hintText: 'Add a review...',
                   suffixIcon: IconButton(
                     icon: const Icon(Icons.send),
                     onPressed: () {

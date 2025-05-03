@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taste_craft/shared/theme.dart';
 
 class RecipeDetail extends StatefulWidget {
   const RecipeDetail({super.key});
@@ -8,26 +9,17 @@ class RecipeDetail extends StatefulWidget {
 }
 
 class _RecipeDetailState extends State<RecipeDetail> {
-  int _selectedIndex = 0; // Track selected index for the bottom navigation bar
-
-  // Function to handle bottom navigation item selection
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white, // White background color
+        backgroundColor: bgWhiteColor,
         elevation: 0, // Remove shadow for flat design
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back,
-              color:
-                  Color(0xFFCA7100)), // Back arrow icon color set to '#CA7100'
-          onPressed: () {},
+          icon: Image.asset('assets/back-arrow.png'),
+          onPressed: () {
+            Navigator.pop(context, '/home'); // Navigate back to home
+          },
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center, // Center the title
@@ -46,15 +38,11 @@ class _RecipeDetailState extends State<RecipeDetail> {
           IconButton(
             icon: const Icon(Icons.notifications,
                 color: Colors.orange), // Notification icon
-            onPressed: () {
-              // Add functionality for notification icon
-            },
+            onPressed: () {},
           ),
           IconButton(
             icon: const Icon(Icons.search, color: Colors.orange), // Search icon
-            onPressed: () {
-              // Add search functionality here
-            },
+            onPressed: () {},
           ),
         ],
       ),
@@ -155,33 +143,6 @@ class _RecipeDetailState extends State<RecipeDetail> {
               decoration: BoxDecoration(
                 color: Color(0xFFCA7100),
                 borderRadius: BorderRadius.circular(30),
-              ),
-              child: BottomNavigationBar(
-                currentIndex: _selectedIndex,
-                onTap: _onItemTapped,
-                selectedItemColor: Colors.white,
-                unselectedItemColor: Colors.white.withOpacity(0.6),
-                backgroundColor: Colors.transparent,
-                showUnselectedLabels: true,
-                type: BottomNavigationBarType.fixed,
-                items: const <BottomNavigationBarItem>[
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.home),
-                    label: 'Home',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.message, size: 30),
-                    label: 'Message',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.category, size: 30),
-                    label: 'Categories',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.account_circle, size: 30),
-                    label: 'Profile',
-                  ),
-                ],
               ),
             ),
           ],

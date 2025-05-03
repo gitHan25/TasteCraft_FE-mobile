@@ -145,6 +145,9 @@ class OnBoarding2 extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 ),
+                const SizedBox(
+                  height: 30,
+                ),
                 Center(
                   child: Row(
                     children: [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taste_craft/shared/theme.dart';
 import 'package:taste_craft/ui/widgets/categories_card.dart';
 
 class CategoriesPage extends StatefulWidget {
@@ -24,16 +25,14 @@ class _CategoriesPageState extends State<CategoriesPage> {
         backgroundColor: Colors.white, // White background color
         elevation: 0, // Remove shadow for flat design
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back,
-              color: Color(
-                  0xFFCA7100)), // Set color to '#CA7100'// Back arrow icon
+          icon: Image.asset('assets/back-arrow.png'),
           onPressed: () {
-            // Add functionality for back button
+            Navigator.pop(context);
           },
         ),
-        title: Row(
+        title: const Row(
           mainAxisAlignment: MainAxisAlignment.center, // Center the title
-          children: const [
+          children: [
             Text(
               'Categories',
               style: TextStyle(
@@ -46,25 +45,18 @@ class _CategoriesPageState extends State<CategoriesPage> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications,
-                color: Colors.orange), // Bell icon for notifications
-            onPressed: () {
-              // Add functionality for notification icon
-            },
+            icon: Icon(Icons.notifications, color: orangeColor),
+            onPressed: () {},
           ),
           IconButton(
-            icon: const Icon(Icons.search,
-                color: Colors.orange), // Search icon for search
-            onPressed: () {
-              // Add search functionality here
-            },
+            icon: Icon(Icons.search, color: orangeColor),
+            onPressed: () {},
           ),
         ],
       ),
-      body: const CategoriesGrid(), // Use the CategoriesGrid widget
+      body: const CategoriesGrid(),
       bottomNavigationBar: Container(
-        margin: const EdgeInsets.only(
-            left: 20, right: 20, bottom: 20), // Add margin to float the bar
+        margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
         decoration: BoxDecoration(
           color: Color(0xFFCA7100),
           borderRadius: BorderRadius.circular(30),
@@ -72,12 +64,11 @@ class _CategoriesPageState extends State<CategoriesPage> {
         child: BottomNavigationBar(
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
-          selectedItemColor: Colors.white, // White color for selected icon
-          unselectedItemColor: Colors.white
-              .withOpacity(0.6), // Slightly transparent for unselected
-          backgroundColor: Colors.transparent, // Remove background color
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white.withOpacity(0.6),
+          backgroundColor: Colors.transparent,
           showUnselectedLabels: true,
-          type: BottomNavigationBarType.fixed, // Keep it fixed
+          type: BottomNavigationBarType.fixed,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home, size: 30),

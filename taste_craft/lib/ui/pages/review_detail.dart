@@ -8,8 +8,6 @@ class LeaveReviewPage extends StatefulWidget {
 }
 
 class _LeaveReviewPageState extends State<LeaveReviewPage> {
-  int _rating = 0; // Track the rating
-  bool _recommended = false; // Track if the user recommends the recipe
   final TextEditingController _reviewController = TextEditingController();
 
   // Function to show Thank You dialog after submitting the review
@@ -26,7 +24,7 @@ class _LeaveReviewPageState extends State<LeaveReviewPage> {
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
-                // Navigate to home or reset the form
+
                 Navigator.pushReplacementNamed(context, '/home');
               },
               child: const Text('Go To Home'),

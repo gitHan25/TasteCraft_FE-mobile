@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -19,17 +21,14 @@ class _HomePageState extends State<HomePage> {
       selectedIndex = index;
     });
 
-    // Navigate to Profile page when the Profile tab is selected
     if (index == 3) {
       Navigator.pushNamed(context, '/profile');
     } else if (index == 1) {
-      Navigator.pushNamed(context, '/review-page');
+      Navigator.pushNamed(context, '/categories');
     } else if (index == 2) {
-      Navigator.pushNamed(context, '/notification-page');
+      Navigator.pushNamed(context, '/review-page');
     } else if (index == 0) {
       Navigator.pushNamed(context, '/home');
-    } else if (index == 4) {
-      Navigator.pushNamed(context, '/categories-page');
     }
   }
 
@@ -71,19 +70,19 @@ class _HomePageState extends State<HomePage> {
                 width: 20,
               ),
             ),
-            label: 'Community',
+            label: 'Categories',
             backgroundColor: bgWhiteColor,
           ),
           BottomNavigationBarItem(
             icon: Padding(
               padding: const EdgeInsets.only(bottom: 0),
-              child: Image.asset(
-                'assets/notif-icon.png',
-                width: 20,
+              child: Icon(
+                Icons.reviews,
                 color: bgWhiteColor,
+                size: 20,
               ),
             ),
-            label: 'Notification',
+            label: 'Review',
           ),
           BottomNavigationBarItem(
             icon: Padding(
@@ -195,13 +194,8 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           buildFavReceipt(),
-          FloatingActionButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/receipt-detail');
-            },
-            backgroundColor: orangeColor,
-            child: const Icon(Icons.add),
-          ),
+          buildSeafoodReceipt(),
+          buildBreakfastReceipt(),
         ],
       ),
     );
@@ -306,8 +300,7 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(
-                left: 16, top: 10), // Geser ke kanan dengan padding
+            padding: const EdgeInsets.only(left: 16, top: 10),
             child: Text(
               'Your Favorite Recipe',
               style: whiteTextStyle.copyWith(
@@ -317,7 +310,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SizedBox(height: 10),
-          // Row untuk menampilkan dua kartu berdampingan
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -327,13 +319,115 @@ class _HomePageState extends State<HomePage> {
                 title: 'Cheese Burger',
                 time: '15min',
               ),
-              // Card kedua
+
               Recipecard(
                 image: 'assets/Food-3.png',
                 title: 'Tiramisu',
                 time: '15min',
               ),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildSeafoodReceipt() {
+    return Container(
+      margin: const EdgeInsets.only(top: 20),
+      decoration: BoxDecoration(
+        color: greenColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+                left: 16, top: 10), // Geser ke kanan dengan padding
+            child: Text(
+              'Seafood Recipe',
+              style: whiteTextStyle.copyWith(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          // Row untuk menampilkan dua kartu berdampingan
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Recipecard(
+                  image: 'assets/Food-2.png',
+                  title: 'Cheese Burger',
+                  time: '15min',
+                  onTap: () => Navigator.pushNamed(
+                    context,
+                    '/receipt-detail',
+                  ),
+                ),
+                Recipecard(
+                  image: 'assets/Food-3.png',
+                  title: 'Tiramisu',
+                  time: '15min',
+                ),
+                Recipecard(
+                    image: 'assets/Food-3.png', title: 'sushi', time: '20 min'),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildBreakfastReceipt() {
+    return Container(
+      margin: const EdgeInsets.only(top: 20),
+      decoration: BoxDecoration(
+        color: greenColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 16, top: 10),
+            child: Text(
+              'Breakfast Recipe',
+              style: whiteTextStyle.copyWith(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Recipecard(
+                  image: 'assets/Food-2.png',
+                  title: 'Cheese Burger',
+                  time: '15min',
+                  onTap: () => Navigator.pushNamed(
+                    context,
+                    '/receipt-detail',
+                  ),
+                ),
+                Recipecard(
+                  image: 'assets/Food-3.png',
+                  title: 'Tiramisu',
+                  time: '15min',
+                ),
+                Recipecard(
+                    image: 'assets/Food-3.png', title: 'sushi', time: '20 min'),
+              ],
+            ),
           ),
         ],
       ),
