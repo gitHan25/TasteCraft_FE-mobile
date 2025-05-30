@@ -324,4 +324,24 @@ class RecipeService {
       }
     };
   }
+
+  static Future<Map<String, dynamic>> getRecipeDetail(String recipeId) async {
+    try {
+      final token = await AuthService.getToken();
+      if (token == null) throw Exception('Not authenticated');
+
+      final response = await http.get(
+        Uri.parse('${ApiConfig.baseUrl}/recipes/$recipeId'),
+        headers: ApiConfig.authHeaders(token),
+      );
+
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body);
+      } else {
+        throw Exception('Recipe not found');
+      }
+    } catch (e) {
+      throw Exception('Error loading recipe: $e');
+    }
+  }
 }

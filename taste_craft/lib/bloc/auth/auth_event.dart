@@ -48,9 +48,23 @@ class AuthLogoutRequested extends AuthEvent {
 
   @override
   List<Object> get props => [token];
-  
 }
 
 class AuthCheckStatus extends AuthEvent {}
 
 class AuthGetUserProfile extends AuthEvent {}
+
+class UpdateUserInfo extends AuthEvent {
+  final String? firstName;
+  final String? lastName;
+  final String? email;
+
+  const UpdateUserInfo({
+    this.firstName,
+    this.lastName,
+    this.email,
+  });
+
+  @override
+  List<Object> get props => [firstName ?? '', lastName ?? '', email ?? ''];
+}

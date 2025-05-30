@@ -7,6 +7,7 @@ import 'package:taste_craft/service/api_config.dart';
 class AuthService {
   static const String _tokenKey = 'auth_token';
   static const String _userKey = 'user_data';
+  static const String _onboardingKey = 'onboarding_completed';
 
   static Future<Map<String, dynamic>> register({
     required String firstName,
@@ -84,7 +85,7 @@ class AuthService {
       await _clearStorage();
       return true;
     } catch (e) {
-      await _clearStorage(); // Clear local data even if API call fails
+      await _clearStorage();
       return false;
     }
   }
@@ -138,6 +139,16 @@ class AuthService {
     return null;
   }
 
+  static Future<bool> hasCompletedOnboarding() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_onboardingKey) ?? false;
+  }
+
+  static Future<void> setOnboardingCompleted() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_onboardingKey, true);
+  }
+
   static Future<void> _clearStorage() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_tokenKey);
@@ -145,8 +156,39 @@ class AuthService {
     await prefs.remove('user_role');
   }
 
+  static Future<bool> isLoggedInOffline() async {
+    try {
+      final token = await getToken();
+      return token != null && token.isNotEmpty;
+    } catch (e) {
+      return false;
+    }
+  }
+
   static Future<bool> isLoggedIn() async {
-    final token = await getToken();
-    return token != null;
+    try {
+      final token = await getToken();
+      if (token == null) return false;
+
+      try {
+        final response = await http
+            .get(
+              Uri.parse('${ApiConfig.baseUrl}/user/profile'),
+              headers: ApiConfig.authHeaders(token),
+            )
+            .timeout(const Duration(seconds: 3));
+
+        if (response.statusCode == 401) {
+          await _clearStorage();
+          return false;
+        }
+
+        return true;
+      } catch (e) {
+        return true;
+      }
+    } catch (e) {
+      return false;
+    }
   }
 }

@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:taste_craft/shared/theme.dart';
 import 'package:taste_craft/ui/widgets/button.dart';
+import 'package:taste_craft/service/auth_service.dart';
 
-class OnBoarding2 extends StatelessWidget {
+class OnBoarding2 extends StatefulWidget {
   const OnBoarding2({super.key});
+
+  @override
+  State<OnBoarding2> createState() => _OnBoarding2State();
+}
+
+class _OnBoarding2State extends State<OnBoarding2> {
+  @override
+  void initState() {
+    super.initState();
+    _markOnboardingCompleted();
+  }
+
+  void _markOnboardingCompleted() async {
+    await AuthService.setOnboardingCompleted();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +165,7 @@ class OnBoarding2 extends StatelessWidget {
                         title: 'Login',
                         width: 160,
                         onPressed: () {
-                          Navigator.pushNamed(context, '/login');
+                          Navigator.pushReplacementNamed(context, '/login');
                         },
                       ),
                       const Spacer(),
@@ -157,7 +173,8 @@ class OnBoarding2 extends StatelessWidget {
                           title: 'Register',
                           width: 160,
                           onPressed: () {
-                            Navigator.pushNamed(context, '/register');
+                            Navigator.pushReplacementNamed(
+                                context, '/register');
                           }),
                     ],
                   ),

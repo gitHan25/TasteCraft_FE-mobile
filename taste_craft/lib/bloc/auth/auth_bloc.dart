@@ -10,6 +10,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthLogoutRequested>(_onLogoutRequested);
     on<AuthCheckStatus>(_onCheckStatus);
     on<AuthGetUserProfile>(_onGetUserProfile);
+    on<UpdateUserInfo>(_onUpdateUserInfo);
   }
 
   Future<void> _onLoginRequested(
@@ -85,11 +86,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     try {
-      final isLoggedIn = await AuthService.isLoggedIn();
+      bool isLoggedIn;
+      try {
+        // Try the full authentication check with network validation
+        isLoggedIn = await AuthService.isLoggedIn();
+      } catch (e) {
+        // Fallback to offline token check
+        isLoggedIn = await AuthService.isLoggedInOffline();
+      }
 
       if (isLoggedIn) {
-        final userProfile = await AuthService.getUserProfile();
-        emit(AuthAuthenticated(userData: userProfile ?? {}));
+        try {
+          final userProfile = await AuthService.getUserProfile();
+          emit(AuthAuthenticated(userData: userProfile ?? {}));
+        } catch (e) {
+          // Even if profile fetch fails, emit authenticated state
+          emit(AuthAuthenticated(userData: {}));
+        }
       } else {
         emit(AuthUnauthenticated());
       }
@@ -112,6 +125,28 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     } catch (e) {
       emit(AuthError(message: 'Error getting user profile: $e'));
+    }
+  }
+
+  Future<void> _onUpdateUserInfo(
+    UpdateUserInfo event,
+    Emitter<AuthState> emit,
+  ) async {
+    if (state is AuthAuthenticated) {
+      final currentState = state as AuthAuthenticated;
+      final updatedUserData = Map<String, dynamic>.from(currentState.userData);
+
+      if (event.firstName != null) {
+        updatedUserData['first_name'] = event.firstName;
+      }
+      if (event.lastName != null) {
+        updatedUserData['last_name'] = event.lastName;
+      }
+      if (event.email != null) {
+        updatedUserData['email'] = event.email;
+      }
+
+      emit(AuthAuthenticated(userData: updatedUserData));
     }
   }
 }

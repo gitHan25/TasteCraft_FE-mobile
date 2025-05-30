@@ -55,4 +55,12 @@ extension AuthStateX on AuthState {
   String? get firstName => this is AuthAuthenticated
       ? (this as AuthAuthenticated).userData['first_name']
       : null;
+
+  String? get lastName => this is AuthAuthenticated
+      ? (this as AuthAuthenticated).userData['last_name']
+      : null;
+
+  String? get email => this is AuthAuthenticated
+      ? (this as AuthAuthenticated).userData['email']
+      : null;
 }

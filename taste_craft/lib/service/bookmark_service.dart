@@ -81,6 +81,7 @@ class BookmarkService {
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
+
         return {
           'success': true,
           'message': data['message'] ?? 'Bookmark removed successfully',
