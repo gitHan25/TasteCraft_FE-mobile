@@ -9,6 +9,7 @@ import 'package:taste_craft/ui/pages/login_page.dart';
 import 'package:taste_craft/ui/pages/on_boarding2.dart';
 import 'package:taste_craft/ui/pages/profile.dart';
 import 'package:taste_craft/ui/pages/recipe_detail.dart';
+import 'package:taste_craft/ui/pages/all_recipes_page.dart';
 import 'package:taste_craft/ui/pages/register_page.dart';
 import 'package:taste_craft/ui/pages/review_detail.dart';
 import 'package:taste_craft/ui/pages/review_page.dart';
@@ -43,7 +44,13 @@ class MyApp extends StatelessWidget {
           '/login': (context) => const LoginPage(),
           '/register': (context) => const RegisterPage(),
           '/home': (context) => const HomePage(),
-          '/receipt-detail': (context) => const RecipeDetail(),
+          '/recipe-detail': (context) {
+            final args = ModalRoute.of(context)?.settings.arguments
+                as Map<String, dynamic>?;
+            final recipeId = args?['recipeId'] as String?;
+            return RecipeDetail(recipeId: recipeId);
+          },
+          '/all-recipes': (context) => const AllRecipesPage(),
           '/categories': (context) => const CategoriesPage(),
           '/review-page': (context) => const ReviewPage(),
           '/leave-review': (context) => const LeaveReviewPage(),

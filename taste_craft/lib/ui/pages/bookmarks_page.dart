@@ -142,8 +142,8 @@ class _BookmarksPageState extends State<BookmarksPage> {
                     time: recipe.cookingTime,
                     isTrending: recipe.isTrending,
                     isBookmarked: true,
-                    onTap: () =>
-                        Navigator.pushNamed(context, '/receipt-detail'),
+                    onTap: () => Navigator.pushNamed(context, '/recipe-detail',
+                        arguments: {'recipeId': recipe.id}),
                     onBookmarkTap: () {
                       context
                           .read<BookmarkBloc>()

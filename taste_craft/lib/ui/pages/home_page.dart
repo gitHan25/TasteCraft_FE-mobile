@@ -87,7 +87,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         modernHeader(),
-                        modernSearchBar(),
                         quickActionsSection(),
                         if (state is RecipeLoading && state is! RecipeLoaded)
                           const Center(
@@ -335,47 +334,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 
-  Widget modernSearchBar() {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade200,
-            blurRadius: 15,
-            offset: const Offset(0, 5),
-          ),
-        ],
-      ),
-      child: TextField(
-        onTap: () => Navigator.pushNamed(context, '/search-page'),
-        readOnly: true,
-        decoration: InputDecoration(
-          hintText: "Search recipes, ingredients, cuisines...",
-          hintStyle: TextStyle(color: Colors.grey.shade500, fontSize: 16),
-          prefixIcon: Container(
-            padding: const EdgeInsets.all(12),
-            child: Icon(Icons.search_rounded, color: orangeColor, size: 24),
-          ),
-          suffixIcon: Container(
-            margin: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: orangeColor,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child:
-                const Icon(Icons.tune_rounded, color: Colors.white, size: 20),
-          ),
-          border: InputBorder.none,
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-        ),
-      ),
-    );
-  }
-
   Widget quickActionsSection() {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 15),
@@ -398,7 +356,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             icon: Icons.local_fire_department_rounded,
             title: "Trending",
             color: Colors.orange.shade400,
-            onTap: () {},
+            onTap: () => Navigator.pushNamed(context, '/all-recipes'),
           ),
         ],
       ),
@@ -557,8 +515,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               const Spacer(),
                               ElevatedButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(
-                                      context, '/receipt-detail');
+                                  Navigator.pushNamed(context, '/recipe-detail',
+                                      arguments: {'recipeId': recipe.id});
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: orangeColor,
@@ -732,7 +690,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     ],
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () =>
+                        Navigator.pushNamed(context, '/all-recipes'),
                     child: Text(
                       'See All',
                       style: orangeTextStyle.copyWith(
@@ -763,8 +722,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     time: recipe.cookingTime,
                     isTrending: true,
                     isBookmarked: state.isRecipeBookmarked(recipe.id),
-                    onTap: () =>
-                        Navigator.pushNamed(context, '/receipt-detail'),
+                    onTap: () => Navigator.pushNamed(context, '/recipe-detail',
+                        arguments: {'recipeId': recipe.id}),
                     onBookmarkTap: () async {
                       if (state.isRecipeBookmarked(recipe.id)) {
                         context
@@ -912,10 +871,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.history_rounded, color: orangeColor, size: 24),
+                      Icon(Icons.restaurant_menu_rounded,
+                          color: orangeColor, size: 24),
                       const SizedBox(width: 8),
                       Text(
-                        'Recently Viewed',
+                        'View Recipes',
                         style: darkBrownTextStyle.copyWith(
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
@@ -924,9 +884,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     ],
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () =>
+                        Navigator.pushNamed(context, '/all-recipes'),
                     child: Text(
-                      'Clear All',
+                      'View All',
                       style: orangeTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -955,8 +916,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     time: recipe.cookingTime,
                     isTrending: true,
                     isBookmarked: state.isRecipeBookmarked(recipe.id),
-                    onTap: () =>
-                        Navigator.pushNamed(context, '/receipt-detail'),
+                    onTap: () => Navigator.pushNamed(context, '/recipe-detail',
+                        arguments: {'recipeId': recipe.id}),
                     onBookmarkTap: () async {
                       if (state.isRecipeBookmarked(recipe.id)) {
                         context
