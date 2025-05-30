@@ -30,7 +30,6 @@ class _ReviewPageState extends State<ReviewPage> {
   ];
 
   // Variable to track selected bottom navigation bar item
-  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -47,14 +46,14 @@ class _ReviewPageState extends State<ReviewPage> {
           },
         ),
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.center, // Center the title
+          mainAxisAlignment: MainAxisAlignment.center,
           children: const [
             Text(
               'Reviews',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFCA7100), // Title color '#CA7100'
+                color: Color(0xFFCA7100),
               ),
             ),
           ],
@@ -218,11 +217,5 @@ class _ReviewPageState extends State<ReviewPage> {
         ),
       ),
     );
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
   }
 }

@@ -23,9 +23,6 @@ class OnBoarding2 extends StatelessWidget {
       ),
       body: Column(
         children: [
-          SizedBox(
-            height: 0,
-          ),
           GridView.count(
             crossAxisCount: 2,
             shrinkWrap: true,
@@ -125,6 +122,7 @@ class OnBoarding2 extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 0),
           Padding(
             padding: const EdgeInsets.all(0),
             child: Column(
@@ -136,7 +134,6 @@ class OnBoarding2 extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 5),
                 Text(
                   'Find the best recipes that the world can provide you also with every step that you can learn to increase your cooking skills.',
                   style: darkBrownTextStyle.copyWith(
@@ -144,9 +141,6 @@ class OnBoarding2 extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                   textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 30,
                 ),
                 Center(
                   child: Row(

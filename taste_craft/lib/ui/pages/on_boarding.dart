@@ -108,7 +108,7 @@ class _OnBoardingState extends State<OnBoarding> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 25),
+                  const SizedBox(height: 25),
                   CustomFilledButton(
                     title: 'Continue',
                     onPressed: () {

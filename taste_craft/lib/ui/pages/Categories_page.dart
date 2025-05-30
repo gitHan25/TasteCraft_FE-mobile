@@ -10,14 +10,6 @@ class CategoriesPage extends StatefulWidget {
 }
 
 class _CategoriesPageState extends State<CategoriesPage> {
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,41 +47,6 @@ class _CategoriesPageState extends State<CategoriesPage> {
         ],
       ),
       body: const CategoriesGrid(),
-      bottomNavigationBar: Container(
-        margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-        decoration: BoxDecoration(
-          color: Color(0xFFCA7100),
-          borderRadius: BorderRadius.circular(30),
-        ),
-        child: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.white.withOpacity(0.6),
-          backgroundColor: Colors.transparent,
-          showUnselectedLabels: true,
-          type: BottomNavigationBarType.fixed,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home, size: 30),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.message, size: 30), // Custom icon for Search
-              label: 'Message',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.category, size: 30), // Custom icon for Search
-              label: 'Categories',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle,
-                  size: 30), // Custom icon for Profile
-              label: 'Profile',
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
